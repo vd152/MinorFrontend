@@ -1,0 +1,38 @@
+:root {
+  --grey-dark: #040404; /* Used on Aside */
+  --grey-light: #121212; /* Used as Backround Color */
+  --grey-lighter: #181818; /* Used on Playlist Items Background Color.
+                            */
+  --grey-text: #b3b3b3; /* Used on Text Color */
+  --grey-nav: #00000080; /* Used as Top Bar Background Color */
+  --green-button: #1db954; /* Used as Play Button Background Color */
+}
+.sidebar-nav {
+  width: 274px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  padding: 24px 8px 0 8px;
+
+  background-color: var(--grey-dark);
+}
+.sidebar-ul {
+  margin: 0;
+  padding: 0;
+}
+.sidebar-li {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+
+  font-family: singfy-bold;
+  font-size: 0.9rem;
+
+  border-radius: 4px;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  background: var(--grey-lighter);
+  color: #fff;
+}

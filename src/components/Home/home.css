@@ -1,0 +1,10 @@
+.outer-wrapper {
+  height: 100vh;
+  min-height: 100%;
+}
+.container-main {
+  background-color: var(--grey-light);
+
+  display: flex;
+  height: calc(100vh - 90px);
+}
