@@ -1,0 +1,9 @@
+:root {
+    --grey-dark: #040404; /* Used on Aside */
+    --grey-light: #121212; /* Used as Backround Color */
+    --grey-lighter: #181818; /* Used on Playlist Items Background Color.
+                              */
+    --grey-text: #b3b3b3; /* Used on Text Color */
+    --grey-nav: #00000080; /* Used as Top Bar Background Color */
+    --green-button: #1db954; /* Used as Play Button Background Color */
+  }
