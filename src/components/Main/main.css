@@ -2,6 +2,16 @@
   width: 100%;
   overflow-y: auto;
 }
+::-webkit-scrollbar {
+  width: 5px;
+}
+ ::-webkit-scrollbar-track {
+  background: var(--grey-lighter) !important; 
+}
+ ::-webkit-scrollbar-thumb {
+  background: var(--green-button) !important; 
+  border-radius:10px;
+}
 .top-nav {
   background-color: var(--grey-nav);
   width: 100%;
