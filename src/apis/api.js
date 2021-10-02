@@ -12,7 +12,7 @@ axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";
 //   delete axios.defaults.headers.common["Authorization"];
 // }
 export default axios.create({
-    baseURL: "",
+    baseURL: "http://localhost:5000",
     headers: {
       Accept: "applications/json",
     },

@@ -1,0 +1,18 @@
+.webcam-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 15;
+}
+.webcam-container video {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100px;
+}
+.webcam-container button{
+  position: absolute;
+  right: 0;
+  top: 80px;
+  display: none
+}

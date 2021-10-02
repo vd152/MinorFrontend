@@ -15,6 +15,7 @@ class MusicPlayer extends React.Component {
         src: "https://www.bensound.com/bensound-music/bensound-november.mp3",
       },
     ],
+    start: true
   };
   render() {
     return (
@@ -32,7 +33,9 @@ class MusicPlayer extends React.Component {
           // onEnded={handleClickNext}
           listenInterval={5000}
           onListen={(listen) => {
-            console.log(1);
+            if(!this.state.start)
+            this.props.changeCapture()
+            else this.setState({start: false})
           }}
         />
       </div>
