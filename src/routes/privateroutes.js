@@ -1,21 +1,17 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-// import { getAuthToken } from '../utils/local';
-// import { getToken } from '../utils/session';
+import { getAuthToken } from '../utils/localStorage';
 
-const getToken = () =>{
-  return false;
-}
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     component={(props) =>
-      getToken() ? (
+      getAuthToken() ? (
         <React.Fragment>
           <Component {...props} />
         </React.Fragment>
       ) : (
-        <Redirect to='/' />
+        <Redirect to='/login' />
       )
     }
   />

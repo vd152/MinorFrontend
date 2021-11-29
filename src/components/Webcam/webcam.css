@@ -13,6 +13,5 @@
 .webcam-container button{
   position: absolute;
   right: 0;
-  top: 80px;
-  display: none
+  top: 8px;
 }

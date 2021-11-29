@@ -11,6 +11,9 @@ class Home extends Component {
   changeCapture = () =>{
     this.setState({capture: true});
   }
+  closeCapture = () =>{
+    this.setState({capture: false});
+  }
   render() {
     return (
       <div className="outer-wrapper">
@@ -19,7 +22,7 @@ class Home extends Component {
           <Sidebar />
           <Main />
         </div>
-        <MusicPlayer changeCapture={this.changeCapture}/>
+        <MusicPlayer changeCapture={this.changeCapture} closeCapture={this.closeCapture}/>
       </div>
     );
   }

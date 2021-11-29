@@ -15,7 +15,7 @@ class MusicPlayer extends React.Component {
         src: "https://www.bensound.com/bensound-music/bensound-november.mp3",
       },
     ],
-    start: true
+    start: true,
   };
   render() {
     return (
@@ -23,19 +23,25 @@ class MusicPlayer extends React.Component {
         <AudioPlayer
           autoPlay={false}
           // layout="horizontal"
-          src={this.state.musicTracks[0].src}
+          src={this.state.musicTracks[1].src}
           onPlay={(e) => console.log("onPlay")}
           showSkipControls={true}
           showJumpControls={false}
-          header={this.state.musicTracks[0].name}
+          header={this.state.musicTracks[1].name}
           // onClickPrevious={handleClickPrevious}
           // onClickNext={handleClickNext}
           // onEnded={handleClickNext}
-          listenInterval={5000}
-          onListen={(listen) => {
-            if(!this.state.start)
-            this.props.changeCapture()
-            else this.setState({start: false})
+          listenInterval={1000}
+          onListen={(e) => {
+            if(e.target.currentTime.toFixed(0) >= 2 && e.target.currentTime.toFixed(0) <= 4){
+              this.props.changeCapture()
+              setTimeout(function(){
+                document.getElementById("capture-img").click()
+             }, 3000);
+            }
+            if(e.target.currentTime.toFixed(0) >= 12 && e.target.currentTime.toFixed(0) <= 16){
+              this.props.closeCapture()
+            }
           }}
         />
       </div>
