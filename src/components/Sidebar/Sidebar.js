@@ -11,11 +11,11 @@ class Sidebar extends React.Component {
           Welcome
         </div>
         <ul className="sidebar-ul">
-          <li className="sidebar-li">
+          <li className="sidebar-li" >
             <HomeIcon />
             Home
           </li>
-          <li className="sidebar-li">
+          <li className="sidebar-li" onClick={()=>this.props.toggleSearch()}>
             <SearchIcon />
             Search
           </li>

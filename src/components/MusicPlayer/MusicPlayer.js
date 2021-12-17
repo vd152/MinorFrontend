@@ -12,7 +12,8 @@ class MusicPlayer extends React.Component {
       },
       {
         name: "November",
-        src: "https://www.bensound.com/bensound-music/bensound-november.mp3",
+        //src: "https://www.bensound.com/bensound-music/bensound-november.mp3",
+        src:"Adele - Hello.mp3"
       },
     ],
     start: true,
@@ -35,6 +36,7 @@ class MusicPlayer extends React.Component {
           onListen={(e) => {
             if(e.target.currentTime.toFixed(0) >= 2 && e.target.currentTime.toFixed(0) <= 4){
               this.props.changeCapture()
+              console.log("capturing.")
               setTimeout(function(){
                 document.getElementById("capture-img").click()
              }, 3000);
