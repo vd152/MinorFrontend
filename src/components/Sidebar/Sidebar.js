@@ -2,7 +2,8 @@ import React from "react";
 import "./sidebar.css";
 import { ReactComponent as HomeIcon } from "./home.svg";
 import { ReactComponent as SearchIcon } from "./search.svg";
-import { ReactComponent as LibraryIcon } from "./library.svg";
+import { ReactComponent as PlaylistIcon } from "./playlist.svg";
+
 class Sidebar extends React.Component {
   render() {
     return (
@@ -11,17 +12,27 @@ class Sidebar extends React.Component {
           Welcome
         </div>
         <ul className="sidebar-ul">
-          <li className="sidebar-li" >
+          <li
+            className="sidebar-li"
+            onClick={() => {
+              this.props.goHome();
+            }}
+          >
             <HomeIcon />
             Home
           </li>
-          <li className="sidebar-li" onClick={()=>this.props.toggleSearch()}>
+          <li
+            className="sidebar-li"
+            onClick={() => {
+              this.props.toggleSearch();
+            }}
+          >
             <SearchIcon />
             Search
           </li>
           <li className="sidebar-li">
-            <LibraryIcon />
-            Library
+            <PlaylistIcon />
+            Playlist
           </li>
         </ul>
       </nav>

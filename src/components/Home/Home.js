@@ -23,8 +23,8 @@ class Home extends Component {
       <div className="outer-wrapper">
           {this.state.capture && <Webcam />}
         <div className="container-main">
-          <Sidebar toggleSearch={this.toggleSearch}/>
-          <Main search={this.state.search}/>
+          <Sidebar toggleSearch={this.toggleSearch} goHome={()=>this.setState({search: false})}/>
+          <Main search={this.state.search} toggleSearch={this.toggleSearch}/>
         </div>
         <MusicPlayer changeCapture={this.changeCapture} closeCapture={this.closeCapture}/>
       </div>
