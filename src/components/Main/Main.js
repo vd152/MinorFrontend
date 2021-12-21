@@ -20,8 +20,8 @@ class Main extends Component {
     return (
       <div className="main-container">
         <div className="top-nav">
-          <div className="d-flex justify-content-between w-100">
-            <p>Music Player</p>
+          <div className="d-flex justify-content-between w-100 align-items-center">
+            <span>Music Player</span>
             {this.props.search && (
               <input
                 type="text"

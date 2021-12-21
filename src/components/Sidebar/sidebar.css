@@ -31,3 +31,26 @@
 .sidebar-li svg {
   margin-right: 1rem;
 }
+.sidebar-welcome{
+  padding: 0 4.2rem 1.2rem 0.8rem;
+   color: white
+}
+@media (max-width: 768px) {
+  .sidebar-nav{
+    width: 70px;
+  }
+  .sidebar-li span{
+    display: none;
+  }
+  .sidebar-li svg {
+    margin-right: 0rem;
+  }
+  .sidebar-welcome{
+    font-size: 0.6rem;
+    padding: 0.6rem
+  }
+}
+.playlist-modal{
+  background: var(--grey-lighter) !important;
+  color: #fff;
+}

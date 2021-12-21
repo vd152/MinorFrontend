@@ -3,6 +3,8 @@ import "./music.css";
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import { connect } from "react-redux";
+import {nextSong, previousSong} from '../../store/Actions/PlaylistAction'
+import Store from "../../store/Store";
 
 class MusicPlayer extends React.Component {
   state = {
@@ -16,17 +18,18 @@ class MusicPlayer extends React.Component {
         src: "http://localhost:5000/music/play/5"
       },
     ],
-    selectedtrack: 1,
     start: true,
   };
-  componentDidMount(){
-    console.log(this.props.playlist)
-  }
   handleClickPrevious = () => {
-    this.setState({selectedtrack: this.state.selectedtrack == 0? this.state.selectedtrack : this.state.selectedtrack -1})
+    this.props.previousSong()
   }
   handleClickNext = () => {
-    this.setState({selectedtrack: this.state.selectedtrack == this.state.musicTracks.length-1? this.state.selectedtrack : this.state.selectedtrack + 1})
+    this.props.nextSong()
+  }
+  componentDidUpdate(){
+    Store.subscribe(()=>{
+      this.forceUpdate()
+    })
   }
   render() {
     return (
@@ -34,11 +37,11 @@ class MusicPlayer extends React.Component {
         <AudioPlayer
           autoPlay={false}
           // layout="horizontal"
-          src={this.state.musicTracks[this.state.selectedtrack].src}
-          onPlay={(e) => console.log("onPlay")}
+          src={this.props.playlist[this.props.selected]?.src}
+          onPlay={(e) => console.log("play")}
           showSkipControls={true}
           showJumpControls={false}
-          header={this.state.musicTracks[this.state.selectedtrack].name}
+          header={this.props.playlist[this.props.selected]?.songName}
           onClickPrevious={this.handleClickPrevious}
           onClickNext={this.handleClickNext}
           onEnded={this.handleClickNext}
@@ -63,7 +66,8 @@ class MusicPlayer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    playlist: state.playlist.playlist
+    playlist: state.playlist.playlist,
+    selected: state.playlist.selected
   };
 };
-export default connect(mapStateToProps)(MusicPlayer);
+export default connect(mapStateToProps, {nextSong, previousSong})(MusicPlayer);

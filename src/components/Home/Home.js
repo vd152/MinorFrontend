@@ -4,10 +4,15 @@ import MusicPlayer from "../MusicPlayer/MusicPlayer";
 import Sidebar from "../Sidebar/Sidebar";
 import "./home.css";
 import {WebcamComponent as Webcam}  from "../Webcam/Webcam";
+import {connect} from 'react-redux'
+import {initplaylist} from '../../store/Actions/PlaylistAction'
 class Home extends Component {
   state={
     capture: false,
     search: false
+  }
+  componentDidMount(){
+    this.props.initplaylist()
   }
   changeCapture = () =>{
     this.setState({capture: true});
@@ -31,5 +36,5 @@ class Home extends Component {
     );
   }
 }
-
-export default Home;
+  
+export default connect(null,{initplaylist})(Home);

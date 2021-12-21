@@ -6,6 +6,7 @@
 
     --grey-text: #b3b3b3; /* Used on Text Color */
     --grey-nav: #00000080; /* Used as Top Bar Background Color */
+    --red-button: #cc3521;
     --green-button: #1db954; /* Used as Play Button Background Color */
   }
   .btn:active, .btn:focus{
