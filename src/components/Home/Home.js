@@ -5,7 +5,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import "./home.css";
 import {WebcamComponent as Webcam}  from "../Webcam/Webcam";
 import {connect} from 'react-redux'
-import {initplaylist} from '../../store/Actions/PlaylistAction'
+import {initplaylist,addEmotionSong} from '../../store/Actions/PlaylistAction'
 class Home extends Component {
   state={
     capture: false,
@@ -14,7 +14,10 @@ class Home extends Component {
   componentDidMount(){
     this.props.initplaylist()
   }
-  changeCapture = () =>{
+  setPlaylist = (playlist)=>{
+    this.props.addEmotionSong(playlist)
+  }
+  openCapture = () =>{
     this.setState({capture: true});
   }
   closeCapture = () =>{
@@ -26,15 +29,15 @@ class Home extends Component {
   render() {
     return (
       <div className="outer-wrapper">
-          {this.state.capture && <Webcam />}
+          {this.state.capture && <Webcam setPlaylist={this.setPlaylist}/>}
         <div className="container-main">
           <Sidebar toggleSearch={this.toggleSearch} goHome={()=>this.setState({search: false})}/>
           <Main search={this.state.search} toggleSearch={this.toggleSearch}/>
         </div>
-        <MusicPlayer changeCapture={this.changeCapture} closeCapture={this.closeCapture}/>
+        <MusicPlayer openCapture={this.openCapture} closeCapture={this.closeCapture}/>
       </div>
     );
   }
 }
   
-export default connect(null,{initplaylist})(Home);
+export default connect(null,{initplaylist,addEmotionSong})(Home);

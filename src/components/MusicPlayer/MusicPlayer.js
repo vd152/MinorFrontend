@@ -7,24 +7,21 @@ import {nextSong, previousSong} from '../../store/Actions/PlaylistAction'
 import Store from "../../store/Store";
 
 class MusicPlayer extends React.Component {
+  capitalizeWords(string) {
+    return string?.replace(/(?:^|\s)\S/g, function (a) {
+      return a?.toUpperCase();
+    });
+  }
   state = {
-    musicTracks: [
-      {
-        name: "Photo Album",
-        src: "http://localhost:5000/music/play/3",
-      },
-      {
-        name:"Test",
-        src: "http://localhost:5000/music/play/5"
-      },
-    ],
     start: true,
   };
   handleClickPrevious = () => {
     this.props.previousSong()
+    this.setState({start: true})
   }
   handleClickNext = () => {
     this.props.nextSong()
+    this.setState({start: true})
   }
   componentDidUpdate(){
     Store.subscribe(()=>{
@@ -38,21 +35,24 @@ class MusicPlayer extends React.Component {
           autoPlay={false}
           // layout="horizontal"
           src={this.props.playlist[this.props.selected]?.src}
+          volume={0.2}
           onPlay={(e) => console.log("play")}
           showSkipControls={true}
           showJumpControls={false}
-          header={this.props.playlist[this.props.selected]?.songName}
+          header={this.capitalizeWords(this.props.playlist[this.props.selected]?.songName)}
           onClickPrevious={this.handleClickPrevious}
           onClickNext={this.handleClickNext}
           onEnded={this.handleClickNext}
           listenInterval={1000}
           onListen={(e) => {
-            if(e.target.currentTime.toFixed(0) >= 2 && e.target.currentTime.toFixed(0) <= 4){
-              this.props.changeCapture()
+            if(this.state.start && e.target.currentTime.toFixed(0) >= 2 && e.target.currentTime.toFixed(0) <= 4){
+              this.props.openCapture()
               console.log("capturing.")
               setTimeout(function(){
+                console.log("capturing now")
                 document.getElementById("capture-img").click()
-             }, 3000);
+             }, 3500);
+             this.setState({start: false})
             }
             if(e.target.currentTime.toFixed(0) >= 12 && e.target.currentTime.toFixed(0) <= 16){
               this.props.closeCapture()

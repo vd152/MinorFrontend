@@ -3,7 +3,9 @@ import Webcam from "react-webcam";
 import "./webcam.css";
 import api from "../../apis/api";
 import { toast } from "react-toastify";
-export const WebcamComponent = () => {
+import {url} from '../../utils/common'
+
+export const WebcamComponent = (props) => {
   const webcamRef = React.useRef(null);
 
   const findMaxThree = (expressions) => {
@@ -23,11 +25,29 @@ export const WebcamComponent = () => {
     api
       .post("/emotion", { image: base64Str })
       .then((res) => {
-        // console.log(res.data.detections);
+        // console.log(res.data.detections.expressions);
         const exp  = findMaxThree(res.data.detections.expressions)
-        toast(Object.keys(exp)[0], {
-          position:"top-center",
-          theme: "light"
+        let emotionsToPlay = {
+          angry: "Aggressive",
+          disgusted: "Energetic",
+          fearful: "Relaxing",
+          happy: "Happy",
+          neutral: "Relaxing",
+          sad: "Dark",
+          surprised: "Energetic"
+        }
+        let url = '/music/mood/'+emotionsToPlay[Object.keys(exp)[0]]
+        api.get(url).then(res=>{
+          let playlist = res.data.songs
+          playlist.forEach(song => {
+            song.src = url+"/music/play/" + song.id;
+          });
+          props.setPlaylist(playlist)
+        }).catch(err=>{
+          console.log(err)
+        })
+        toast(`Modifying playlist: ${Object.keys(exp)[0]}`, {
+          position:"bottom-right",
         })
       })
       .catch((err) => {

@@ -1,11 +1,12 @@
 import api from '../../apis/api'
 import { toast } from "react-toastify";
+import {url} from '../../utils/common'
 
 export const initplaylist = () => async (dispatch, getState) => {
         api.get('/music/popular').then(res=>{
           let songs = res.data.songs.splice(0,5)
           songs.forEach(song =>{
-              song.src = "http://localhost:5000/music/play/"+song.id
+              song.src = url+"/music/play/"+song.id
           })
           dispatch({
               type: "ADD_SONG",
@@ -52,7 +53,8 @@ export const playNow = (song) => async (dispatch, getState) => {
     let songs = getState().playlist.playlist
     if(songs.includes(song)){
         let index = songs.indexOf(song)
-        songs.unshift(songs.splice(index,1)[0])
+        songs.splice(0, index)
+        //songs.unshift(songs.splice(index,1)[0])
     }else{
         let newSongs = [song, ...songs]
         songs = newSongs
@@ -79,7 +81,17 @@ export const previousSong = () => async (dispatch, getState) =>{
         })
     }
 }
-
+export const addEmotionSong = (playlist)=> async(dispatch, getState)=>{
+    let newPlaylist = getState().playlist.playlist.splice(0, getState().playlist.selected+1)
+    playlist.forEach(song=>{
+        newPlaylist.push(song)
+    })
+    dispatch({
+        type: "ADD_SONG",
+        payload: newPlaylist,
+        selected: getState().playlist.selected
+    })
+}
 export const nextSong = () => async (dispatch, getState) =>{
     if(getState().playlist.selected == getState().playlist.playlist.length-1){
         dispatch({
@@ -99,3 +111,4 @@ export const nextSong = () => async (dispatch, getState) =>{
 export const onSongEnd = () => async (dispatch, getState) =>{
     
 }
+

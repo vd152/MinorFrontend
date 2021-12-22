@@ -3,13 +3,13 @@ import "./card.css";
 import { ReactComponent as PlayIcon } from "./play.svg";
 import { ReactComponent as AddIcon } from "./add.svg";
 import { ReactComponent as CloseIcon } from "./close.svg";
-
+import {url} from '../../utils/common'
 import { connect } from "react-redux";
 import { addSongToPlaylist, playNow, removeSongFromPlaylist } from "../../store/Actions/PlaylistAction";
 class Card extends Component {
   capitalizeWords(string) {
-    return string.replace(/(?:^|\s)\S/g, function (a) {
-      return a.toUpperCase();
+    return string?.replace(/(?:^|\s)\S/g, function (a) {
+      return a?.toUpperCase();
     });
   }
   render() {
@@ -33,7 +33,7 @@ class Card extends Component {
               data-dismiss="modal"
               onClick={() => {
                 let song = this.props.song;
-                song.src = "http://localhost:5000/music/play/" + song.id;
+                song.src = url+"/music/play/" + song.id;
                 this.props.addSongToPlaylist(song);
               }}
             >
@@ -47,7 +47,7 @@ class Card extends Component {
               data-dismiss="modal"
               onClick={() => {
                 let song = this.props.song;
-                song.src = "http://localhost:5000/music/play/" + song.id;
+                song.src = url+"/music/play/" + song.id;
                 this.props.removeSongFromPlaylist(song);
               }}
             >
@@ -59,7 +59,7 @@ class Card extends Component {
             style={{ cursor: "pointer" }}
             onClick={() => {
               let song = this.props.song;
-              song.src = "http://localhost:5000/music/play/" + song.id;
+              song.src = url+ "/music/play/" + song.id;
               this.props.playNow(song);
             }}
           >
