@@ -25,7 +25,7 @@ export const WebcamComponent = (props) => {
     api
       .post("/emotion", { image: base64Str })
       .then((res) => {
-        // console.log(res.data.detections.expressions);
+        // top 3 emotions
         const exp  = findMaxThree(res.data.detections.expressions)
         let emotionsToPlay = {
           angry: "Aggressive",
@@ -36,7 +36,7 @@ export const WebcamComponent = (props) => {
           sad: "Dark",
           surprised: "Energetic"
         }
-        let url = '/music/mood/'+emotionsToPlay[Object.keys(exp)[0]]
+        let url = '/music/mood/'+emotionsToPlay[Object.keys(exp)[0]] 
         api.get(url).then(res=>{
           let playlist = res.data.songs
           playlist.forEach(song => {

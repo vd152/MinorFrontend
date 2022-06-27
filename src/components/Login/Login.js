@@ -48,6 +48,7 @@ class Login extends React.Component {
         setUser(res.data.user);
         toast("Logging you in..");
         this.setState({redirect: true})
+        window.location.reload()
       })
       .catch((err) => {
         toast.error(`${err.response?.data?.message}`);
