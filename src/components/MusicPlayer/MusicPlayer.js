@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { nextSong, previousSong } from "../../store/Actions/PlaylistAction";
 import Store from "../../store/Store";
 
+//contains the player and controllers for audio
 class MusicPlayer extends React.Component {
   capitalizeWords(string) {
     return string?.replace(/(?:^|\s)\S/g, function (a) {
