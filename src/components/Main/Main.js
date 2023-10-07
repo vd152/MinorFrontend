@@ -3,6 +3,8 @@ import CardWrap from "../Cards/CardWrap";
 import "./main.css";
 import { removeAuthToken } from "../../utils/localStorage";
 import api from "../../apis/api"
+
+//contains song home page and Search bar
 class Main extends Component {
   state = {
     searchWord: "",

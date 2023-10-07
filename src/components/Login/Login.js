@@ -5,6 +5,7 @@ import api from "../../apis/api";
 import { toast } from "react-toastify";
 import { setAuthToken, setUser } from "../../utils/localStorage";
 
+//sign in and sign up page
 class Login extends React.Component {
   state = {
     login: true,
